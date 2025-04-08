@@ -12,9 +12,9 @@ body {
 }
 
 .container {
-    max-width: 1500px;
+    max-width: 1350px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 0rem;
 }
 
 header {
@@ -22,6 +22,32 @@ header {
     padding: 2rem 0;
     background-color: white;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+nav {
+    padding: 1rem 0;
+}
+  
+nav ul {
+list-style-type: none;
+margin: 0;
+padding: 0;
+display: inline-flex; 
+gap: 2rem;
+}
+
+nav li a {
+text-decoration: none; 
+outline:auto;
+font-weight: 500; 
+font-size: 1rem;
+padding: 0.5rem 1rem; 
+transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav li a:hover {
+background-color: #ddd;
+border-radius: 4px;
 }
 
 h1 {
