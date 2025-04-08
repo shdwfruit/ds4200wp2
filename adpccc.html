@@ -259,28 +259,34 @@
 
     <script src="project.js"></script>
     <script>
-        // Accordion functionality
-        document.querySelectorAll('.accordion-header').forEach(header => {
+        document.addEventListener('DOMContentLoaded', () => {
+          // Select all sections
+          const accordionSections = document.querySelectorAll('.accordion-section');
+          
+          // Loop through them and open each by default
+          accordionSections.forEach(section => {
+            const content = section.querySelector('.accordion-content');
+            const icon = section.querySelector('.toggle-icon');
+            
+            // Add the active class to expand
+            content.classList.add('active');
+            // Rotate the icon
+            icon.style.transform = 'rotate(180deg)';
+          });
+        
+          // Then set up the click to toggle
+          document.querySelectorAll('.accordion-header').forEach(header => {
             header.addEventListener('click', () => {
-                const content = header.nextElementSibling;
-                const icon = header.querySelector('.toggle-icon');
-                
-                // Toggle active class
-                content.classList.toggle('active');
-                
-                // Rotate icon
-                icon.style.transform = content.classList.contains('active') 
-                    ? 'rotate(180deg)' 
-                    : 'rotate(0deg)';
-
-                // Just trigger resize event
-                if (content.classList.contains('active')) {
-                    setTimeout(() => {
-                        window.dispatchEvent(new Event('resize'));
-                    }, 100);
-                }
+              const content = header.nextElementSibling;
+              const icon = header.querySelector('.toggle-icon');
+              
+              content.classList.toggle('active');
+              icon.style.transform = content.classList.contains('active') 
+                  ? 'rotate(180deg)' 
+                  : 'rotate(0deg)';
             });
+          });
         });
-    </script>
+        </script>
 </body>
 </html> 

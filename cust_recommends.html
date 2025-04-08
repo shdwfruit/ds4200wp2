@@ -204,12 +204,49 @@
                     <span class="toggle-icon">▼</span>
                 </div>
                 <div class="accordion-content">
-                    <div class="visualization-container" style="height: 650px;">
-                        <embed 
-                        src="recommendsDiamond.png" 
-                        width="1020px" 
-                        height="554px" 
-                        style="display: block; margin: 0 auto;">
+                    <div class="visualization-container" style="height: 400px;">
+                        <table>
+                            <thead>
+                              <tr>
+                                <th>Cut Type</th>
+                                <th>Recommended Color</th>
+                                <th>Recommended Clarity</th>
+                                <th>Reason</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>Fair</td>
+                                <td>G or F</td>
+                                <td>VS1 or VS2</td>
+                                <td>Balanced quality and price; avoid Color J and I1 which are high in price but not top quality</td>
+                              </tr>
+                              <tr>
+                                <td>Good</td>
+                                <td>G or H</td>
+                                <td>VS2 or VVS2</td>
+                                <td>Lower price with decent appearance; avoid IF clarity (expensive and not cost-effective)</td>
+                              </tr>
+                              <tr>
+                                <td>Very Good</td>
+                                <td>G or H</td>
+                                <td>VS2 or VVS1</td>
+                                <td>Balanced choice in the middle clarity range; Color J/I are too expensive for their quality</td>
+                              </tr>
+                              <tr>
+                                <td>Premium</td>
+                                <td>H or I</td>
+                                <td>VS2</td>
+                                <td>Premium cut is already costly—choose slightly lower Color/Clarity to stay within budget</td>
+                              </tr>
+                              <tr>
+                                <td>Ideal</td>
+                                <td>G or H</td>
+                                <td>VS1 or VS2</td>
+                                <td>Avoid Color J (overpriced) and IF clarity (low value for money); middle range offers balance</td>
+                              </tr>
+                            </tbody>
+                          </table>
                     </div>
                 </div>
             </div>
@@ -222,22 +259,35 @@
     </footer>
 
     <script>
-        // Accordion functionality
-        document.querySelectorAll('.accordion-header').forEach(header => {
+        document.addEventListener('DOMContentLoaded', () => {
+          // Select all sections
+          const accordionSections = document.querySelectorAll('.accordion-section');
+          
+          // Loop through them and open each by default
+          accordionSections.forEach(section => {
+            const content = section.querySelector('.accordion-content');
+            const icon = section.querySelector('.toggle-icon');
+            
+            // Add the active class to expand
+            content.classList.add('active');
+            // Rotate the icon
+            icon.style.transform = 'rotate(180deg)';
+          });
+        
+          // Then set up the click to toggle
+          document.querySelectorAll('.accordion-header').forEach(header => {
             header.addEventListener('click', () => {
-                const content = header.nextElementSibling;
-                const icon = header.querySelector('.toggle-icon');
-                
-                // Toggle active class
-                content.classList.toggle('active');
-                
-                // Rotate icon
-                icon.style.transform = content.classList.contains('active') 
-                    ? 'rotate(180deg)' 
-                    : 'rotate(0deg)';
+              const content = header.nextElementSibling;
+              const icon = header.querySelector('.toggle-icon');
+              
+              content.classList.toggle('active');
+              icon.style.transform = content.classList.contains('active') 
+                  ? 'rotate(180deg)' 
+                  : 'rotate(0deg)';
             });
+          });
         });
-    </script>
+        </script>
 
     <script src="project.js"></script>
     <script src="base_reversal_html"></script>
