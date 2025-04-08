@@ -1,0 +1,41 @@
+cut,clarity,average_price
+Fair,I1,3703.53
+Fair,SI2,5173.92
+Fair,SI1,4208.28
+Fair,VS2,4174.72
+Fair,VS1,4165.14
+Fair,VVS2,3349.77
+Fair,VVS1,3871.35
+Fair,IF,1912.33
+Good,I1,3596.64
+Good,SI2,4580.26
+Good,SI1,3689.53
+Good,VS2,4262.24
+Good,VS1,3801.45
+Good,VVS2,3079.11
+Good,VVS1,2254.77
+Good,IF,4098.32
+Very Good,I1,4078.23
+Very Good,SI2,4988.69
+Very Good,SI1,3932.39
+Very Good,VS2,4215.76
+Very Good,VS1,3805.35
+Very Good,VVS2,3037.77
+Very Good,VVS1,2459.44
+Very Good,IF,4396.22
+Premium,I1,3947.33
+Premium,SI2,5545.94
+Premium,SI1,4455.27
+Premium,VS2,4550.33
+Premium,VS1,4485.46
+Premium,VVS2,3795.12
+Premium,VVS1,2831.21
+Premium,IF,3856.14
+Ideal,I1,4335.73
+Ideal,SI2,4755.95
+Ideal,SI1,3752.12
+Ideal,VS2,3284.55
+Ideal,VS1,3489.74
+Ideal,VVS2,3250.29
+Ideal,VVS1,2468.13
+Ideal,IF,2272.91

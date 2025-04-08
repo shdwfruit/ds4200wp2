@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Visualizations - Information Visualization Presentation</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        .accordion {
+            width: 100%;
+            margin: 2rem 0;
+        }
+
+        .accordion-section {
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background-color: #f8f9fa;
+        }
+
+        .accordion-header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .accordion-content.active {
+            max-height: 2000px;
+        }
+
+        .visualization-container {
+            padding: 1.5rem;
+            background-color: white;
+        }
+
+        .description {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .visualization-type {
+            font-size: 1.2rem;
+        }
+
+        .interactive-visualization {
+            width: 100%;
+            height: 775px;
+            margin: 1rem 0;
+        }
+
+        .tooltip {
+            position: absolute;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            border-radius: 4px;
+            pointer-events: none;
+        }
+
+        .axis-label {
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .tick line {
+            stroke: #ccc;
+        }
+
+        .tick text {
+            font-size: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1> Physical Dimensions Analysis </h1>
+    </header>
+
+    <div class="visualization-buttons">
+        <a href="index.html" class="button">Introduction</a>
+        <a href="eda.html" class="button">Exploratory Data Analysis</a>
+        <a href="pda.html" class="button">Physical Dimension Analysis</a>
+        <a href="adpccc.html" class="button">Analyzing Trends with the Three Cs</a>
+        <a href="cust_recommends.html" class="button">Customer Recommendations</a>
+        <a href="conclusion.html" class="button">Conclusion</a>
+    </div>
+
+    <div class="container">
+        <div class="accordion">
+
+            <!-- Relationship Between Price and Dimensions -->
+            <div class="accordion-section">
+                <div class="accordion-header">
+                    <h2><span class="visualization-type">📊</span> Relationship Between Price and Dimensions </h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="visualization-container" style="height: 1200px;">
+                        <div id="scatter_price_carat_cut" class="interactive-visualization">
+
+                            <iframe 
+                                src="scatter_price_carat_cut.html" 
+                                width="775px"
+                                style="height: 500px; border: none; display: block; margin: 0 auto;" 
+                                scrolling="no">
+                            </iframe>
+
+                            </br>
+
+                            <p>
+
+                                The scatter plot shows a strong positive relationship between carat and price, 
+                                consistent with earlier findings. However, since carat is derived from the diamond's volume, 
+                                it's closely tied to the dimensions x, y, and z. This implies that as x, y, and z increase, 
+                                carat and therefore price also tend to increase. We see that diamonds with larger dimensions 
+                                often fall into higher price ranges, but the relationship becomes more dispersed at 
+                                higher prices, suggesting that other factors (like cut and clarity) also contribute to the 
+                                final value.
+
+                                <br/>
+                                <ul>
+                                    <li>
+                                        <Strong>x-Dimension (Length) Patterns: </Strong>Across all price ranges, the x dimension is typically 
+                                        between 4 mm and 8 mm, peaking around 5-6.5 mm. Lower-priced diamonds (under 4,000) 
+                                        tend to have smaller x-values, often below 6 mm, while higher-priced diamonds frequently 
+                                        exceed 6 mm in length. As price increases, the frequency of x-values also shifts 
+                                        to the right, with higher-priced diamonds having larger lengths. In the highest price 
+                                        range (above $16,000), x-dimensions are frequently above 8 mm, indicating that longer 
+                                        diamonds contribute to premium pricing.
+                                    </li>
+                                    <li>
+                                        <Strong>y-Dimension (Width) Patterns: </Strong>The y dimension follows a similar distribution to x. 
+                                        For most diamonds, y ranges from 4 mm to 8 mm, with a concentration between 
+                                        5.5 and 7.5 mm. In lower price ranges, y dimensions are more concentrated at the 
+                                        lower end (around 5-6 mm), while in higher price brackets, y spreads out towards 
+                                        8 mm and beyond. In the highest price segment, y-dimension values approach or exceed 
+                                        9 mm, reinforcing the pattern that physically larger diamonds fetch higher prices.
+                                    </li>
+                                    <li>
+                                        <Strong>z-Dimension (Depth) Patterns: </Strong>The z dimension also reflects a consistent trend: 
+                                        as price increases, so does z. For most diamonds, z ranges from 2 mm to 5.5 mm, 
+                                        with peaks around 3.5-4.5 mm. High-priced diamonds typically have a z-dimension closer 
+                                        to 5 mm or above, suggesting greater depth. However, z shows a slightly narrower 
+                                        spread than x and y, likely due to tighter tolerances in cut quality and proportions 
+                                        required for optimal brilliance.
+                                    </li>
+                                </ul>
+
+                                <Strong>Conclusion</Strong>
+
+                                <p>
+                                    The physical dimensions x, y, and z are highly correlated with carat and therefore with price. 
+                                    As these dimensions increase, so does the price of the diamond. Among them, the 
+                                    x and y dimensions (length and width) show the most noticeable spread across 
+                                    price categories, making them good indicators of size and price potential. 
+                                    While z (depth) also increases with price, its tighter distribution reflects stricter 
+                                    design constraints. Overall, the relationship between diamond price and size is both 
+                                    strong and nonlinear, and x, y, z offer useful predictive insights when assessing 
+                                    diamond value.
+                                </p>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p> Authors: Xing Yan, Yazhu Tan, Rick Xie </p>
+    </footer>
+
+    <script>
+        // Accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const icon = header.querySelector('.toggle-icon');
+                
+                // Toggle active class
+                content.classList.toggle('active');
+                
+                // Rotate icon
+                icon.style.transform = content.classList.contains('active') 
+                    ? 'rotate(180deg)' 
+                    : 'rotate(0deg)';
+            });
+        });
+    </script>
+
+    <script src="project.js"></script>
+    <script src="base_reversal_html"></script>
+    <script src="x_y_z.html"></script>
+</body>
+</html> 

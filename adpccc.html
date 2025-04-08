@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADPCCC</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src='https://d3js.org/d3.v7.min.js'></script>
+    <style>
+        .accordion {
+            width: 100%;
+            margin: 2rem 0;
+        }
+
+        .accordion-section {
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: visible;
+        }
+
+        .accordion-header {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background-color: #f8f9fa;
+        }
+
+        .accordion-header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            visibility: hidden;
+        }
+
+        .accordion-content.active {
+            max-height: 3000px;
+            overflow: visible;
+            visibility: visible;
+        }
+
+        .visualization-container {
+            padding: 1.5rem;
+            background-color: white;
+            height: auto;
+            overflow: visible;
+        }
+
+        .thumbnail {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+
+        .description {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .visualization-type {
+            font-size: 1.2rem;
+        }
+
+        .js-visualization {
+            width: 100%;
+            height: 800px;
+            margin: 1rem 0;
+            overflow: visible;
+        }
+
+        #colorplot, #clarityplot {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        #colortooltip, #claritytooltip {
+            position: absolute;
+            opacity: 0;
+            background: white;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            pointer-events: none;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <!-- Add tooltip containers -->
+    <div id="colortooltip"></div>
+    <div id="claritytooltip"></div>
+
+    <header>
+        <h1> Analyzing Diamond Price Trends by Carat, Cut, Color, and Clarity </h1>
+    </header>
+
+    <div class="visualization-buttons">
+        <a href="index.html" class="button">Introduction</a>
+        <a href="eda.html" class="button">Exploratory Data Analysis</a>
+        <a href="pda.html" class="button">Physical Dimension Analysis</a>
+        <a href="adpccc.html" class="button">Analyzing Trends with the Three Cs</a>
+        <a href="cust_recommends.html" class="button">Customer Recommendations</a>
+        <a href="conclusion.html" class="button">Conclusion</a>
+    </div>
+
+    <div class="container">
+
+        <div class="accordion">
+
+            <!-- Price vs. Carat Analysis -->
+            <div class="accordion-section">
+                <div class="accordion-header">
+                    <h2><span class="visualization-type">🖼️</span> Price vs. Carat Analysis </h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="visualization-container" style="height: 1200px;">
+                        <embed src="scatter_price_carat.html" width="800px" height="550px" style="display: block; margin: 0 auto;">
+                        <p>
+                            <Strong>General Pattern: All Cuts Combined</Strong>
+                            <br/>
+                            In the first scatter plot that includes all cuts, we observe a clear positive correlation between carat and price: 
+                            as the carat of a diamond increases, its price tends to rise. However, this relationship is nonlinear—prices 
+                            grow faster at higher carats, suggesting that price increases exponentially with carat size. 
+                            There's a dense concentration of diamonds under 2 carats and $6,000, indicating these are the most common 
+                            and accessible options. Above 2 carats, diamonds become much rarer and significantly more expensive. 
+                            Additionally, we see overlapping dots from different cuts, indicating that cut alone doesn't solely determine 
+                            price—other factors like color and clarity may play a role.
+                            <br/>
+                            <br/>
+                            <Strong>Individual Cut Trends</Strong>
+                            <br/>
+                            <ul>
+                                <li>
+                                    <Strong>Fair Cut</Strong>: Diamonds with a Fair cut tend to have greater variation in price 
+                                    for the same carat weight. Some Fair cut diamonds with high carat values exceed $15,000, while others 
+                                    of similar weight are significantly less expensive. This suggests inconsistency, potentially due to lower 
+                                    perceived quality or trade-offs in other attributes like clarity or color.
+                                </li>
+                                <li>
+                                    <Strong>Good Cut</Strong>: Good cut diamonds display a moderate upward trend. Most diamonds in this category 
+                                    fall below 2 carats and $10,000. There is more price consistency than Fair cut diamonds, 
+                                    suggesting slightly better overall quality, but still notable variability.
+                                </li>
+                                <li>
+                                    <Strong>Very Good Cut</Strong>: Diamonds with a Very Good cut show a tighter and more consistent 
+                                    relationship between carat and price. Prices rise steadily with carat weight, 
+                                    and the spread is narrower compared to Fair and Good cuts. Most diamonds are under 2.5 carats and $12,000, 
+                                    indicating popularity among buyers seeking balance between quality and price.
+                                </li>
+                                <li>
+                                    <Strong>Ideal Cut</Strong>: Ideal cut diamonds are concentrated in the lower carat range (below 2 carats) 
+                                    with prices mostly under $10,000. This could reflect market preference for Ideal cuts in smaller, 
+                                    well-proportioned stones. The price-to-carat trend is consistent, though not as steep as Premium cuts. 
+                                    These diamonds tend to offer high quality at more modest sizes.
+                                </li>
+                                <li>
+                                    <Strong>Premium Cut</Strong>: Premium cut diamonds demonstrate one of the clearest and strongest upward trends. 
+                                    There are many high-carat diamonds in this group, with prices stretching well past $15,000. 
+                                    This indicates that Premium cuts are often chosen for larger, more luxurious diamonds and that the 
+                                    market places higher value on this combination.
+                                </li>
+                            </ul>
+                            <br/>
+                            <Strong>Summary of Price, Carat, and Cut Relationship</Strong>:
+                            <br/>
+                            Across all individual charts, the strongest factor influencing price is carat, with price rising as carat increases, 
+                            especially beyond the 2-carat mark. However, cut also plays a role: Premium and Very Good cuts tend to have higher price ranges 
+                            at similar carats, while Ideal cuts are more concentrated in smaller diamonds. Fair cuts show the most price variability, 
+                            possibly reflecting inconsistencies in quality or market value. These scatter plots confirm the finding from the 
+                            correlation matrix that carat is the most powerful predictor of diamond price, but also suggest that cut quality interacts 
+                            with carat to shape the final price.
+                            <br/>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Impact of Diamond Color on Price Variation Across Carats -->
+            <div class="accordion-section">
+                <div class="accordion-header">
+                    <h2><span class="visualization-type">🖼️</span> The Impact of Diamond Color on Price Variation Across Carat Sizes </h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="visualization-container" style="height: 425px;">
+                        <p>
+                            The scatter plots show that diamond color significantly influences price patterns, 
+                            especially when controlling for carat size. Higher color grades like D, E, and F—considered 
+                            more colorless and desirable—tend to have tighter, more consistent price distributions, 
+                            with prices generally higher across similar carat weights. As the color grade declines from G to J, 
+                            the price variation increases, and diamonds of the same carat often sell for less. 
+                            Lower color grades are more sensitive to other factors like cut and clarity, resulting in a 
+                            wider spread of prices. Overall, better color grades not only command higher prices but also 
+                            show greater pricing consistency, while lower grades are more variable and influenced by 
+                            other diamond qualities.                     
+                        </p>
+
+                        </br>
+                    
+                        <embed 
+                        src="colorScale.png" 
+                        width="834px" 
+                        height="204px" 
+                        style="display: block; margin: 0 auto;">
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- Impact of Diamond Clarity on Price Variation Across Carats -->
+            <div class="accordion-section">
+                <div class="accordion-header">
+                    <h2><span class="visualization-type">🖼️</span> The Impact of Diamond Clarity on Price Variation Across Carat Sizes </h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="visualization-container" style="height: 750px;">
+                        <p>
+                            The scatter plots show that clarity has a significant impact on diamond pricing, 
+                            especially when comparing diamonds of similar carat weight. As clarity improves—from lower grades 
+                            like I1 and SI2 to higher grades such as VS2, VVS2, and IF—the overall price trend shifts upward, 
+                            indicating that higher clarity diamonds are valued more even at the same carat. 
+                            In lower clarity plots (e.g., I1, SI2), prices are more scattered and tend to fall below the 
+                            regression line, reflecting lower market value and greater variability. In contrast, 
+                            higher clarity grades show tighter clustering and more data points above the regression line, 
+                            suggesting these diamonds consistently command premium prices. This pattern highlights how clarity 
+                            not only enhances a diamond's quality but also significantly elevates its market price, 
+                            particularly in higher carat ranges where quality differences are more noticeable and impactful. 
+                        </p>
+
+                        <embed 
+                        src="clarityDiagram.jpg" 
+                        width="1274px" 
+                        height="580px" 
+                        style="display: block; margin: 0 auto;">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p> Authors: Xing Yan, Yazhu Tan, Rick Xie </p>
+    </footer>
+
+    <script src="project.js"></script>
+    <script>
+        // Accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const icon = header.querySelector('.toggle-icon');
+                
+                // Toggle active class
+                content.classList.toggle('active');
+                
+                // Rotate icon
+                icon.style.transform = content.classList.contains('active') 
+                    ? 'rotate(180deg)' 
+                    : 'rotate(0deg)';
+
+                // Just trigger resize event
+                if (content.classList.contains('active')) {
+                    setTimeout(() => {
+                        window.dispatchEvent(new Event('resize'));
+                    }, 100);
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

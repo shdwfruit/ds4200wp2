@@ -1,0 +1,36 @@
+cut,color,average_price
+Fair,J,4975.66
+Fair,I,4685.45
+Fair,H,5135.68
+Fair,G,4239.25
+Fair,F,3827.0
+Fair,E,3682.31
+Fair,D,4291.06
+Good,J,4574.17
+Good,I,5078.53
+Good,H,4276.25
+Good,G,4123.48
+Good,F,3495.75
+Good,E,3423.64
+Good,D,3405.38
+Very Good,J,5103.51
+Very Good,I,5255.88
+Very Good,H,4535.39
+Very Good,G,3872.75
+Very Good,F,3778.82
+Very Good,E,3214.65
+Very Good,D,3470.47
+Premium,J,6294.59
+Premium,I,5946.18
+Premium,H,5216.71
+Premium,G,4500.74
+Premium,F,4324.89
+Premium,E,3538.91
+Premium,D,3631.29
+Ideal,J,4918.19
+Ideal,I,4451.97
+Ideal,H,3889.33
+Ideal,G,3720.71
+Ideal,F,3374.94
+Ideal,E,2597.55
+Ideal,D,2629.09

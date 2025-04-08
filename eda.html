@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exploratory Data Analysis</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src='https://d3js.org/d3.v7.min.js'></script>
+    <style>
+        .accordion {
+            width: 100%;
+            margin: 2rem 0;
+        }
+
+        .accordion-section {
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: visible;
+        }
+
+        .accordion-header {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background-color: #f8f9fa;
+        }
+
+        .accordion-header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            visibility: hidden;
+        }
+
+        .accordion-content.active {
+            max-height: 3000px;
+            overflow: visible;
+            visibility: visible;
+        }
+
+        .visualization-container {
+            padding: 1.5rem;
+            background-color: white;
+            height: auto;
+            overflow: visible;
+        }
+
+        .thumbnail {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+
+        .description {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .visualization-type {
+            font-size: 1.2rem;
+        }
+
+        .js-visualization {
+            width: 100%;
+            height: 800px;
+            margin: 1rem 0;
+            overflow: visible;
+        }
+
+        #colorplot, #clarityplot {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        #colortooltip, #claritytooltip {
+            position: absolute;
+            opacity: 0;
+            background: white;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            pointer-events: none;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <!-- Add tooltip containers -->
+    <div id="colortooltip"></div>
+    <div id="claritytooltip"></div>
+
+    <header>
+        <h1> Exploratory Data Analysis (EDA) </h1>
+    </header>
+
+    <div class="visualization-buttons">
+        <a href="index.html" class="button">Introduction</a>
+        <a href="eda.html" class="button">Exploratory Data Analysis</a>
+        <a href="pda.html" class="button">Physical Dimension Analysis</a>
+        <a href="adpccc.html" class="button">Analyzing Trends with the Three Cs</a>
+        <a href="cust_recommends.html" class="button">Customer Recommendations</a>
+        <a href="conclusion.html" class="button">Conclusion</a>
+    </div>
+
+    <div class="container">
+
+        <div class="accordion">
+
+            <!-- Image Visualizations -->
+            <!-- Diamond attribute distributions -->
+            <div class="accordion-section">
+                <div class="accordion-header">
+                    <h2><span class="visualization-type">🖼️</span> Count Distribution of Cut, Color, and Clarity </h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="visualization-container" style="height: 925px;">
+                        <embed src="Interactive_Count_Distribution.html" width="825px" height="550px" style="display: block; margin: 0 auto;">
+                        <p>
+                            This provides an overview of how frequently different categories appear in the dataset, 
+                            we created an interactive bar chart that allows users to switch between cut, color, and clarity 
+                            distributions using a dropdown menu. This tool enables flexible exploration of the diamond dataset 
+                            and enhances understanding of how the diamonds are categorized.
+
+                            </br>
+                            </br>
+
+                            <Strong>Cut Distribution: </Strong>Among all cut grades, Ideal dominates the dataset, accounting for the highest 
+                            number of diamonds, followed by Premium and Very Good. Good and Fair cuts appear much 
+                            less frequently. This skewed distribution suggests that most diamonds in the dataset are cut to 
+                            higher standards, aligning with market demand for well-cut stones that enhance brilliance.
+
+                            </br>
+                            </br>
+
+                            <Strong>Color Distribution: </Strong>Color grade G has the highest count, followed closely by E, F, and H. 
+                            The frequency decreases for lower color grades, with I and J being the least represented. 
+                            This pattern indicates that near-colorless diamonds are more common, possibly reflecting both 
+                            customer preferences and market availability.
+
+                            </br>
+                            </br>
+
+                            <Strong>Clarity Distribution: </Strong>The clarity grade SI1 occurs most frequently, followed by VS2, SI2, and VS1. 
+                            High-clarity diamonds such as IF and VVS1 are relatively rare in the dataset. This suggests that 
+                            diamonds with minor inclusions are more prevalent and likely preferred for their balance of 
+                            appearance and affordability.
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cut, Depth, Clarity Distribution -->
+            <div class="accordion-section">
+                <div class="accordion-header">
+                    <h2><span class="visualization-type">🖼️</span> Distribution of Numerical Attributes </h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="visualization-container" style="height: 900px;">
+                        <embed 
+                            src="Interactive_Distribution_of_Numerical_Variables.html" 
+                            width="825px" 
+                            height="550px" 
+                            style="display: block; margin: 0 auto;">
+
+                        <p>
+
+                            This interactive histogram visualization presents the frequency distribution of three key 
+                            numerical attributes in the diamond dataset: carat, depth, and table. Users can switch between 
+                            variables using a dropdown menu to better explore individual patterns in the data.
+
+                            </br>
+                            </br>
+
+                            <Strong>Carat Distribution: </Strong>The carat variable, representing diamond weight, displays a right-skewed 
+                            distribution. Most diamonds fall within the range of 0.2 to 1 carat, with a sharp decline in 
+                            frequency as carat size increases. This suggests that smaller diamonds are more commonly available, 
+                            while larger diamonds are rarer and likely more expensive, though price is not depicted here.
+                            
+                            </br>
+                            </br>
+
+                            <Strong>Depth Distribution: </Strong>The depth percentage (the ratio of height to average diameter) shows a more 
+                            symmetrical distribution centered around 61%, which aligns with standard proportions for round 
+                            brilliant cuts. The majority of diamonds fall between 59% and 63%, indicating consistent cutting 
+                            practices within this range.
+
+                            </br>
+                            </br>
+                            
+                            <Strong>Table Distribution: </Strong>The table percentage (the width of the top facet relative to the diamond's 
+                            diameter) also exhibits a concentrated distribution, with most values clustered between 54% and 60%. 
+                            This reflects preferred cutting standards, as table size plays a crucial role in how light enters 
+                            and reflects within the diamond.                            
+                            
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sankey Visualization -->
+            <div class="accordion-section">
+                <div class="accordion-header">
+                    <h2><span class="visualization-type">🖼️</span> Sankey Visualization of Cut, Clarity, and Color in Diamonds </h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="visualization-container" style="height: 850px;">
+                        <embed 
+                            src="sankey.html" 
+                            width="1025px" 
+                            height="625px" 
+                            style="display: block; margin: 0 auto;">
+                        <p>
+
+                            To complement our numerical and scatter plot analyses, we created a Sankey diagram to visualize 
+                            the flow relationships among three key categorical attributes of diamonds: cut, clarity, and color. 
+                            This visual approach helps reveal how different combinations of these features are distributed 
+                            within the dataset. Each node in the diagram represents a category within one attribute, 
+                            and each link illustrates the volume of diamonds transitioning from one category to another. 
+                            The thicker the link, the more diamonds follow that path.
+
+                            </br>
+                            </br>
+
+                            This visualization provides intuitive insight into which combinations are most common, 
+                            such as the strong prevalence of Ideal cut diamonds paired with SI1 or VS2 clarity, and 
+                            mid-range color grades like G and H. It also highlights how certain clarity levels (e.g., SI2, VS2) 
+                            serve as a bridge across multiple cuts and colors, reflecting market preferences for 
+                            balancing quality and price.                         
+                            
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- X, Y, Z Correlation Matrix -->
+            <div class="accordion-section">
+                <div class="accordion-header">
+                    <h2><span class="visualization-type">🖼️</span> Numerical Features Correlation Matrix </h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="visualization-container" style="height: 875px;">
+
+                        <embed src="correlationPlot.png" width=auto height="500px" style="display: block; margin: 0 auto;">
+
+                        </br>
+
+                        <p>
+                            The correlation matrix heatmap provides insight into the relationships between the numerical features in the diamonds dataset. 
+                            One of the most prominent patterns is the strong positive correlation between carat and price (0.92), 
+                            indicating that as the weight of a diamond increases, its price tends to rise significantly. Additionally, 
+                            the physical dimensions of the diamond—represented by x (length), y (width), and z (depth in mm)—are also strongly correlated 
+                            with both carat and price, with correlation coefficients ranging from 0.86 to 0.98. These variables tend to increase together, 
+                            suggesting that larger diamonds in physical size are not only heavier but also more expensive. 
+                            However, since x, y, and z are highly correlated with each other, including all of them in further analysis may introduce multicollinearity. 
+                            It would be more efficient to select just one of these, or rely on carat alone as it already encapsulates size.
+                            <br/>
+                            <br/>
+                            On the other hand, depth and table show weak correlations with price and other variables. Depth, in particular, has near-zero correlation 
+                            with price (-0.011) and negligible relationships with other features, making it a poor predictor. Table has a slightly higher correlation 
+                            with price (0.13), but still too weak to be considered influential. Interestingly, there is a modest negative correlation between depth and 
+                            table (-0.3), which might reflect a trade-off in diamond geometry. Based on these observations, the most valuable variables for further 
+                            analysis are carat, and the physical dimensions (x, y, and z) are better to discuss together, and categorical features such as 
+                            cut, color, and clarity, which are not included in the heatmap but are likely important for predicting price. 
+                            Depth and table may be excluded from further analysis due to their weak associations.
+                            <br/>
+                            <br/>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p> Authors: Xing Yan, Yazhu Tan, Rick Xie </p>
+    </footer>
+
+    <script src="project.js"></script>
+    <script>
+        // Accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const icon = header.querySelector('.toggle-icon');
+                
+                // Toggle active class
+                content.classList.toggle('active');
+                
+                // Rotate icon
+                icon.style.transform = content.classList.contains('active') 
+                    ? 'rotate(180deg)' 
+                    : 'rotate(0deg)';
+
+                // Just trigger resize event
+                if (content.classList.contains('active')) {
+                    setTimeout(() => {
+                        window.dispatchEvent(new Event('resize'));
+                    }, 100);
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
