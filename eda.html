@@ -219,7 +219,7 @@
                     <span class="toggle-icon">▼</span>
                 </div>
                 <div class="accordion-content">
-                    <div class="visualization-container" style="height: 850px;">
+                    <div class="visualization-container" style="height: 1175px;">
                         <embed 
                             src="sankey.html" 
                             width="1025px" 
@@ -227,22 +227,47 @@
                             style="display: block; margin: 0 auto;">
                         <p>
 
-                            To complement our numerical and scatter plot analyses, we created a Sankey diagram to visualize 
-                            the flow relationships among three key categorical attributes of diamonds: cut, clarity, and color. 
-                            This visual approach helps reveal how different combinations of these features are distributed 
-                            within the dataset. Each node in the diagram represents a category within one attribute, 
-                            and each link illustrates the volume of diamonds transitioning from one category to another. 
-                            The thicker the link, the more diamonds follow that path.
+                            This Sankey Diagram visualizes the relationships between three key quality characteristics of 
+                            diamonds: Cut, Clarity, and Color. The chart consists of three vertical columns representing each 
+                            attribute, with flows connecting them to show how diamonds are distributed across different 
+                            quality levels. The thickness of each flow indicates the number of diamonds in each category, 
+                            helping to reveal trends and concentrations across the dataset.
 
                             </br>
                             </br>
 
-                            This visualization provides intuitive insight into which combinations are most common, 
-                            such as the strong prevalence of Ideal cut diamonds paired with SI1 or VS2 clarity, and 
-                            mid-range color grades like G and H. It also highlights how certain clarity levels (e.g., SI2, VS2) 
-                            serve as a bridge across multiple cuts and colors, reflecting market preferences for 
-                            balancing quality and price.                         
-                            
+                            On the left side, we see different Cut grades, including Ideal, Premium, Very Good, Good, and Fair. 
+                            These are shaded in various tones of green, with darker green representing higher quality cuts 
+                            like "Ideal" and lighter green representing lower quality cuts like "Fair." From this, we observe 
+                            that the majority of diamonds fall into the "Ideal" and "Premium" categories, indicating a strong 
+                            preference or availability of high-quality cuts in the dataset.
+
+                            </br>
+                            </br>
+
+                            The middle column displays Clarity grades, ranging from Internally Flawless (IF) to Included (I1). 
+                            These are shown in shades of purple, with deeper purple signifying better clarity 
+                            (e.g., IF and VVS1), and lighter purple corresponding to lower clarity (e.g., SI2 and I1). 
+                            The diagram reveals that most diamonds fall into mid-range clarity categories such as VS1, VS2, and 
+                            SI1, with relatively few diamonds being either perfectly flawless or heavily included.
+
+                            </br>
+                            </br>
+
+                            On the right side, the Color grades are represented from D to J, transitioning from deep red to a 
+                            soft peach tone. This gradient aligns with the GIA color scale, where D is the most colorless 
+                            (and desirable), and J has noticeable yellow tint. The flow patterns show that most diamonds fall 
+                            into the near-colorless range (E-H), with fewer diamonds in the highest (D) or lowest (I-J) color grades.
+
+                            </br>
+                            </br>
+
+                            Overall, this Sankey diagram effectively illustrates the distribution of diamonds across cut, 
+                            clarity, and color dimensions. The use of color gradients to indicate quality levels enhances the 
+                            visual interpretation: green (cut), purple (clarity), and red-orange (color) all flow from darker 
+                            hues (higher quality) to lighter hues (lower quality), creating an intuitive way to follow how 
+                            diamond characteristics interact.
+                      
                         </p>
                     </div>
                 </div>
@@ -257,7 +282,7 @@
                 <div class="accordion-content">
                     <div class="visualization-container" style="height: 875px;">
 
-                        <embed src="correlationPlot.png" width=auto height="500px" style="display: block; margin: 0 auto;">
+                        <embed src="correlation_matrix.png" width=auto height="500px" style="display: block; margin: 0 auto;">
 
                         </br>
 
